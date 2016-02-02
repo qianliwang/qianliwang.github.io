@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Watson</title>
+  <title>Mac OS X Apache and PHP Setup | Watson</title>
   <meta name="author" content="Sen Wang">
   
   <meta name="description" content="All Science is Computer Science">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Mac OS X Apache and PHP Setup"/>
   <meta property="og:site_name" content="Watson"/>
 
   
@@ -47,8 +47,7 @@
 <div class="clearfix"></div>
 </header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
@@ -58,7 +57,7 @@
       
       
   
-    <h1 class="title"><a href="/2016/02/01/Mac-OS-X-Apache-and-PHP-Setup/">Mac OS X Apache and PHP Setup</a></h1>
+    <h1 class="title">Mac OS X Apache and PHP Setup</h1>
   
 
     </header>
@@ -90,6 +89,24 @@
       
         
         
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
       
       <div class="clearfix"></div>
     </footer>
@@ -97,98 +114,27 @@
 </article>
 
 
+<section id="comment">
+  <h1 class="title">留言</h1>
 
-
-  <article class="post">
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-01-29T05:21:48.000Z"><a href="/2016/01/28/Mac-Opencv-3-1-0/">2016-01-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/01/28/Mac-Opencv-3-1-0/">Mac Opencv 3.1.0</a></h1>
-  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
-    </header>
-    <div class="entry">
-      
-        <p>So, the first post.<br>It is about installation of OpenCV 3.1.0 on the Mac OS X, El Captain. </p>
-<p>I just repeat the same process when I install the 3.0.0:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install opencv3 --with-java --with-qt5</span><br></pre></td></tr></table></figure></p>
-<p>Then I found the jar file in the<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/Cellar/opencv3/<span class="number">3.1</span>.<span class="number">0</span>_1/share/opencv/java/</span><br></pre></td></tr></table></figure></p>
-<p>Then I created the new <code>User libraries</code> in the Eclipse,</p>
-<p><em>Add the <code>jar</code> file.
-</em>Select the same folder as the <code>native library path</code>.</p>
-<p>Then I create a new project, test the code,<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br></pre></td></tr></table></figure></p>
-<p>Bang, the error pops up.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread <span class="string">"main"</span> java.lang.UnsatisfiedLinkError: no opencv_java310 in java.library.path</span><br></pre></td></tr></table></figure></p>
-<p>Now below shows how I fix it, thanks to the <a href="http://cimadai.hateblo.jp/entry/opencv_sbt_scala" target="_blank" rel="external">Janpanse guy</a>,<br>basically, two steps,<br>1.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew reinstall opencv3 --with-java,--with-qt5,--with-contrib</span><br></pre></td></tr></table></figure></p>
-<p>2.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/Cellar/opencv3/<span class="number">3.1</span>.<span class="number">0</span>_1/share/opencv/java/libopencv_310.so /usr/<span class="built_in">local</span>/Cellar/opencv3/<span class="number">3.1</span>.<span class="number">0</span>_1/share/opencv/java/libopencv_310.dylib</span><br></pre></td></tr></table></figure></p>
-<p>And then the <code>System.loadLibrary(Core.NATIVE_LIBRARY_NAME)</code> works good in Eclipse<br>I am not sure which step saved my day, the <code>--with-contrib</code> or <code>libopencv_310.dylib</code>.<br>But I guess that it might be something wrong with the <code>Homebrew</code>, I have report a problem on their forum, but didn’t see updates yet. </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-01-24T06:32:09.512Z"><a href="/2016/01/24/hello-world/">2016-01-24</a></time>
-      
+<div class="fb-comments" data-href="http://yoursite.com/2016/02/01/Mac-OS-X-Apache-and-PHP-Setup/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
-    <h1 class="title"><a href="/2016/01/24/hello-world/">Hello World</a></h1>
-  
+</section>
 
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-<nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
